@@ -1,11 +1,14 @@
-;(function(){
+(function($) {
+	"use strict"
+	
+	// Preloader
+	$(window).on('load', function() {
+		$("#preloader").delay(600).fadeOut();
+	});
 
-			// Menu settings
-			$('#menuToggle, .menu-close').on('click', function(){
-				$('#menuToggle').toggleClass('active');
-				$('body').toggleClass('body-push-toleft');
-				$('#theMenu').toggleClass('menu-open');
-			});
-
-
-})(jQuery)
+	// Mobile Toggle Btn
+	$('.navbar-toggle').on('click',function(){
+		$('#header').toggleClass('nav-collapse')
+	});
+	
+})(jQuery);
