@@ -31,6 +31,8 @@ body {
     position: relative;
     min-width: 960px;
     background: #e69226 url(../images/front.jpg) no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
 }
 
 .ic {
