@@ -1,0 +1,64 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic);
+
+* {
+	box-sizing:border-box;
+}
+
+body {
+	font-family: 'Ubuntu Condensed', sans-serif;
+	padding: 0;
+	margin:0;
+	background: #F6FAFB;
+}
+
+.content {
+	width: 100%;
+	max-width: 1200px;
+	margin:0 auto;
+	height: 100%;
+}
+
+.content p {
+	text-align: center;
+	background: #3598DC;
+	color:#fff;
+	padding: 4px 10px;
+	line-height: 40px;
+	width: 40%;
+	margin: 0 auto 10px auto;
+}
+
+.blocks {
+	padding-top:20px;
+	margin-bottom: 30px;
+}
+
+.blocks:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.item {
+	float: left;
+	width: 50% !important;
+	padding: 0 32px;
+	border-right:1px solid #ccc;
+}
+
+.item:last-child {
+	border:none;
+}
+
+
+.item h2 {
+	text-align: center;
+	color: #3B3B3B;
+}
+
+
+/*Ð”ÐµÐ»Ð°ÐµÐ¼ Ð¸ÐºÐ¾Ð½ÐºÐ¸ Ð½Ð° Ð²ÑÑŽ ÑˆÐ¸Ñ€Ð¸Ð½Ñƒ ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€Ð°*/
+#gear65, #pencils13, #hourglass, #lights7, #cups17, #stats47 {
+	width: 100% !important;
+	height: 100% !important;
+}
