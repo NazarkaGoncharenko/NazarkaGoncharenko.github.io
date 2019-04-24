@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Currency</title>
+
+	<style>
+		body {
+			padding-top: 30px;
+		}
+	</style>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div id="app">
+		<div class="container">
+			<div class="row">
+				<div class="jumbotron bg-success text-white w-100">
+				  <div class="container">
+				    <h1 class="display-4">{{ exchangerate[0].ccy }}</h1>
+				    <div class="row">
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Покупка: {{ exchangerate[0].buy }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Продажа: {{ exchangerate[0].sale }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Валюта обмена: {{ exchangerate[0].base_ccy }}
+				    		</h3>
+				    	</div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="jumbotron bg-primary text-white w-100">
+				  <div class="container">
+				    <h1 class="display-4">{{ exchangerate[1].ccy }}</h1>
+				    <div class="row">
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Покупка: {{ exchangerate[1].buy }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Продажа: {{ exchangerate[1].sale }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Валюта обмена: {{ exchangerate[1].base_ccy }}
+				    		</h3>
+				    	</div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="jumbotron bg-danger text-white w-100">
+				  <div class="container">
+				    <h1 class="display-4">{{ exchangerate[2].ccy }}</h1>
+				    <div class="row">
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Покупка: {{ exchangerate[2].buy }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Продажа: {{ exchangerate[2].sale }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Валюта обмена: {{ exchangerate[2].base_ccy }}
+				    		</h3>
+				    	</div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="jumbotron bg-warning w-100">
+				  <div class="container">
+				    <h1 class="display-4">{{ exchangerate[3].ccy }}</h1>
+				    <div class="row">
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Покупка: {{ exchangerate[3].buy }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Продажа: {{ exchangerate[3].sale }}
+				    		</h3>
+				    	</div>
+				    	<div class="col-4">
+				    		<h3 class="mt-2">
+				    			Валюта обмена: {{ exchangerate[3].base_ccy }}
+				    		</h3>
+				    	</div>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	var app = new Vue({
+		el: '#app',
+		data: {
+			exchangerate: []
+		},
+		beforeMount() {
+  			var xhttp = new XMLHttpRequest();
+
+  			var this_ = this;
+
+  			xhttp.onreadystatechange = function() {
+  		  	if (this.readyState == 4 && this.status == 200) {
+  		  		var xml = this.responseXML;
+  		  		var row = xml.getElementsByTagName('row');
+
+  		  		for (var i = 0; i < row.length; i++) {
+  		  			var exchangerate = {
+  		  				ccy: row[i].getElementsByTagName('exchangerate')[0].getAttribute('ccy'),
+  		  				base_ccy: row[i].getElementsByTagName('exchangerate')[0].getAttribute('base_ccy'),
+  		  				buy: row[i].getElementsByTagName('exchangerate')[0].getAttribute('buy'),
+  		  				sale: row[i].getElementsByTagName('exchangerate')[0].getAttribute('sale')
+  		  			}
+
+  		  			this_.exchangerate.push(exchangerate);
+  		  		}
+  		  	}
+  			};
+  			xhttp.open("GET", "https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5", true);
+  			xhttp.send();
+		}
+	});
+</script>
+
+</html>
